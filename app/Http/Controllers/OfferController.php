@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class OfferController extends Controller
 {
@@ -20,7 +22,9 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        return view('offers.create')->with([
+            'tags' => Tag::all()
+        ]);
     }
 
     /**
@@ -28,7 +32,18 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedAttributes = $request->validate([
+            'title' => 'required|min:5',
+            'salary' => 'required',
+            'description' => 'sometimes',
+            'logo' => ['required', File::types(['png', 'jpg', 'webp'])]
+        ]);
+        $logoPath = $request->logo->store('logos');
+        $validatedAttributes['company_id'] = auth()->user()->company->id;
+        $validatedAttributes['logo'] = $logoPath;
+        Offer::create($validatedAttributes)->tags()->attach($request->tags);
+
+        return redirect('/');
     }
 
     /**

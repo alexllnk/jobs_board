@@ -25,4 +25,9 @@ class OfferFactory extends Factory
             'featured' => $this->faker->boolean(),
         ];
     }
+
+    public function notFeatured(): static
+    {
+        return $this->state(fn (array $attributes) => ['featured' => false]);
+    }
 }

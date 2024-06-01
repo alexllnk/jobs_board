@@ -5,7 +5,8 @@
     </div>
     <div>
         <h3 class="font-bold">{{ $offer->title }}</h3>
-        <p>{{ $offer->description }} <br>Salary: <span class="font-bold"> ${{ Number::format((int)$offer->salary) }} </span></p>
+        <p>{{ $offer->description }} <br>Salary: <span
+                    class="font-bold"> ${{ Number::format((int)$offer->salary) }} </span></p>
     </div>
     <div class="flex justify-between items-center mt-auto">
         <div>
@@ -13,6 +14,6 @@
                 <x-tag href="{{ '#' }}">{{ $tag->name }}</x-tag>
             @endforeach
         </div>
-        <img src="http://placehold.it/42/42" alt="" class="rounded">
+        <img src="{{ $offer->logo ? asset('/storage/' . $offer->logo) :  asset('/storage/logos/42.png') }}" alt="" class="rounded">
     </div>
 </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TagController extends Controller
 {
@@ -12,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        dd(self::class);
     }
 
     /**
@@ -36,7 +38,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        dd($tag);
     }
 
     /**
@@ -61,5 +63,11 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         //
+    }
+
+    public function indexTaggedOffers(Tag $tag): View
+    {
+        $offers = Offer::latest()->has($tag)->paginate(10);
+        return view('offers.tagged.index');
     }
 }

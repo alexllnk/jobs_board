@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\Offer;
 use App\Models\Tag;
 use App\Models\User;
@@ -18,11 +19,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        User::factory()->has(Company::factory())->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
         Offer::factory(20)->has(Tag::factory()->count(3))->create();
+
+        Offer::factory(20)
+            ->notFeatured()
+            ->has(Tag::factory()->count(3))
+            ->create();
     }
 }

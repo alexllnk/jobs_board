@@ -9,6 +9,8 @@ class Offer extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
@@ -18,4 +20,5 @@ class Offer extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
 }

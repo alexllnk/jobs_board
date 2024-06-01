@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('offer_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Offer::class);
+            $table->foreignIdFor(Offer::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

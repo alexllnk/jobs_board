@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('salary');
             $table->text('description');
+            $table->string('logo')->nullable();
             $table->boolean('featured')->default(false);
             $table->foreignIdFor(Company::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

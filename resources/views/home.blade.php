@@ -22,8 +22,8 @@
             @endforelse
         </div>
     </section>
-    <div class="text-center mt-4 mb-4">
-        <a href="/offers" class="inline-block bg-blue-400 hover:bg-blue-600 rounded text-white px-4 py-2 hover:border-amber-500/50 hover:border">See all jobs</a>
+    <div class="mt-4 mb-4">
+        {{ $recentOffers->links() }}
     </div>
     <footer>
         <hr>

@@ -1,8 +1,9 @@
 @php use Illuminate\Support\Number; @endphp
 @props(['offer'])
 <div class="p-4 bg-white rounded-xl flex">
-    <div class="max-w-24">
-        <img src="http://placehold.it/42/42" alt="" class="rounded min-h-24 min-w-24">
+    <div class="max-w-24 min-w-24">
+        <img src="{{ $offer->logo ? asset('/storage/' . $offer->logo) : asset('/storage/logos/42.png') }}" alt=""
+             class="rounded w-[42px] h-[42px]">
         <div class="self-start text-sm text-blue-600">
             {{ $offer->company->name }}
         </div>
